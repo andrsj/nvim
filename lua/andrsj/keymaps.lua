@@ -9,7 +9,6 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>')
 
 
 
--- Working with Tabs
 vim.api.nvim_set_keymap('n', '<leader><Tab>', '<C-w><C-w>', { noremap = true, silent = true, desc = '[Tab] (switch)' })
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, desc = '[s]ave file' })
 
@@ -17,8 +16,8 @@ vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, desc = '[s]ave
 
 -- Formatting
 vim.keymap.set('n', '<C-f>', function()
-    -- vim.lsp.buf.format() -- The same
-    vim.cmd('Format')
+    -- vim.lsp.buf.format() -- The same for down below!
+    vim.cmd('Format') -- NOTE: User defined command from lsp.lua:53
 end, { noremap = true, silent = true, desc = '[F]ormat file' })
 
 
@@ -38,18 +37,35 @@ vim.keymap.set('n', '<leader>f', vim.diagnostic.open_float, { desc = "Open [f]lo
 
 --[[NeoTree]]
 vim.keymap.set('n', '<leader>e', function()
-    neo_tree.execute({ toggle = true, position = 'left', source = 'filesystem' })
-end, { noremap = true, silent = true, desc = '[e]xplorer (neo-tree)' }) --`:Neotree toggle left<CR>',
+    neo_tree.execute({
+        toggle = true,
+        position = 'left',
+        source = 'filesystem'
+    })
+end, { noremap = true, silent = true, desc = '[e]xplorer leftside [neo-tree]' }) --`:Neotree toggle left<CR>',
 
 vim.keymap.set('n', '<leader>E', function()
-    neo_tree.execute({ toggle = true, position = 'float', source = 'filesystem' })
-end, { noremap = true, silent = true, desc = '[E]xplorer (neo-tree)' }) --':Neotree float toggle<CR>',
+    neo_tree.execute({
+        toggle = true,
+        position = 'float',
+        source = 'filesystem'
+    })
+end, { noremap = true, silent = true, desc = '[E]xplorer float window [neo-tree]' }) --':Neotree float toggle<CR>',
 
+vim.keymap.set('n', '<leader>b', function()
+    neo_tree.execute({
+        toggle = true,
+        position = 'float',
+        source = 'buffers'
+    })
+end, { noremap = true, silent = true, desc = '[b]uffers (neo-tree)' }) --':Neotree float toggle<CR>',
 
 
 -- [[ToggleTerm]]
-vim.keymap.set('n', '<leader>`', function() vim.cmd('ToggleTerm') end, { desc = 'ToggleTerm' })
--- vim.api.nvim_set_keymap('n', '<leader>`', ':h', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>th', function() vim.cmd('ToggleTerm direction=horizontal') end, { desc = 'ToggleTerm horizontal' })
+vim.keymap.set('n', '<leader>tv', function() vim.cmd('ToggleTerm size=70 direction=vertical') end, { desc = 'ToggleTerm vertical' })
+vim.keymap.set('n', '<leader>tT', function() vim.cmd('ToggleTerm direction=tab') end, { desc = 'ToggleTerm tab' })
+vim.keymap.set('n', '<leader>tf', function() vim.cmd('ToggleTerm direction=float') end, { desc = 'ToggleTerm float' })
 
 
 -- [[TODO Comments]]
@@ -59,9 +75,9 @@ vim.keymap.set('n', '<leader>sC', function() vim.cmd('TodoTelescope') end, { des
 
 -- [[Markdown Preview]]
 vim.api.nvim_set_keymap('n', '<leader>md', ':MarkdownPreview<CR>',
-{ noremap = true, silent = true, desc = '[m]ark[d]ownPreview' })
+    { noremap = true, silent = true, desc = '[m]ark[d]ownPreview' })
 vim.api.nvim_set_keymap('n', '<leader>ms', ':MarkdownPreviewStop<CR>',
-{ noremap = true, silent = true, desc = '[m]arkdownPreview [s]top' })
+    { noremap = true, silent = true, desc = '[m]arkdownPreview [s]top' })
 
 
 
@@ -104,7 +120,12 @@ vim.keymap.set('n', '<leader>r', tb.registers, { desc = '[r]egister' })
 -- Help
 vim.keymap.set('n', '<leader>hk', tb.keymaps, { desc = '[h]elp [k]eymaps' })
 vim.keymap.set('n', '<leader>hb', tb.builtin, { desc = '[h]elp [b]uilt-in' })
-vim.keymap.set('n', '<leader>hc', tb.commands, { desc = '[h]elp [c]ommands' })
+vim.keymap.set('n', '<leader>hc', function()
+    tb.commands({
+        prompt_title = 'v Search commands v',
+        windblend = 70,
+    })
+end, { desc = '[h]elp [c]ommands' })
 vim.keymap.set('n', '<leader>ho', tb.vim_options, { desc = '[h]elp Vim [o]ptions' })
 vim.keymap.set('n', '<leader>ha', tb.autocommands, { desc = '[h]elp [a]uto Commands' })
 vim.keymap.set('n', '<leader>hs', tb.help_tags, { desc = '[h]elp [s]earch' })

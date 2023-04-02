@@ -5,6 +5,30 @@ require("neo-tree").setup({
         statusline = true,
     },
     filesystem = {
+        window = {
+            width = 50,
+            mappings = {
+                ["S"] = "split_with_window_picker",
+                ["s"] = "vsplit_with_window_picker",
+                ["Z"] = "expand_all_nodes",
+                ["C"] = "close_all_subnodes",
+                ["P"] = { "toggle_preview", config = { use_float = true } },
+                ["a"] = {
+                    "add",
+                    -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
+                    -- some commands may take optional config options, see `:h neo-tree-mappings` for details
+                    config = {
+                        show_path = "relative" -- "none", "relative", "absolute"
+                    }
+                },
+                ["c"] = {
+                    "copy",
+                    config = {
+                        show_path = "relative" -- "none", "relative", "absolute"
+                    }
+                }
+            }
+        },
         filtered_items = {
             visible = false,
             hide_dotfiles = false,
@@ -23,28 +47,4 @@ require("neo-tree").setup({
         },
         follow_current_file = true,
     },
-    window = {
-        width = 50,
-        mappings = {
-            ["S"] = "split_with_window_picker",
-            ["s"] = "vsplit_with_window_picker",
-            ["Z"] = "expand_all_nodes",
-            ["C"] = "close_all_subnodes",
-            ["P"] = { "toggle_preview", config = { use_float = true } },
-            ["a"] = {
-                "add",
-                -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
-                -- some commands may take optional config options, see `:h neo-tree-mappings` for details
-                config = {
-                    show_path = "relative" -- "none", "relative", "absolute"
-                }
-            },
-            ["c"] = {
-                "copy",
-                config = {
-                    show_path = "relative" -- "none", "relative", "absolute"
-                }
-            }
-        }
-    }
 })

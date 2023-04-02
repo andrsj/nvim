@@ -87,13 +87,16 @@ require('lazy').setup({
         priority = 1000,
         config = function()
             require('onedark').setup {
-                style = 'darker',
                 -- Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
-                -- toggle theme style ---
-                toggle_style_key = '<leader>T',                                                      -- keybind to toggle theme style.
-                toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }, -- List of styles to toggle between
+                style = 'darker',
+                -- toggle theme style
+                -- keybind to toggle theme style
+                toggle_style_key = '<leader>T',
+                -- List of styles to toggle between
+                toggle_style_list = { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' },
                 code_style = {
-                    comments = 'none',                                                               -- keywords = 'italic, bold'
+                    -- keywords = 'italic, bold'
+                    comments = 'none',
                     keywords = 'none',
                     functions = 'none',
                     strings = 'none',

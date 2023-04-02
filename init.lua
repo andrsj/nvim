@@ -18,6 +18,7 @@ require('andrsj.plugins.window-picker')
 require('andrsj.plugins.neo-tree')
 require('andrsj.plugins.telescope')
 require('andrsj.plugins.tree-sitter')
+require('andrsj.plugins.toggle-term')
 require('andrsj.plugins.cmp')
 
 

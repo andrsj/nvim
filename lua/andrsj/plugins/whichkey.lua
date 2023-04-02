@@ -5,6 +5,7 @@ require('which-key').register({
     ['<leader>h'] = { '[h]elp' },
     ['<leader>j'] = { '[j]umping' },
     ['<leader>s'] = { '[s]earch / [s]pell' },
+    ['<leader>t'] = { '[t]erminal' },
     ['<leader>T'] = { '[T]oggle stylemode' },
     ['<leader>w'] = { '[w]orkspace' },
     ['<leader><C-r>'] = { '[R]ename var' }
