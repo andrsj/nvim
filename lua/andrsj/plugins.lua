@@ -128,6 +128,7 @@ require('lazy').setup({
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-symbols.nvim',
             'barrett-ruth/telescope-http.nvim',
+            'LinArcX/telescope-command-palette.nvim',
         },
     },
 

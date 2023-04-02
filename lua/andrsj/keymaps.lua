@@ -62,8 +62,12 @@ end, { noremap = true, silent = true, desc = '[b]uffers (neo-tree)' }) --':Neotr
 
 
 -- [[ToggleTerm]]
-vim.keymap.set('n', '<leader>th', function() vim.cmd('ToggleTerm direction=horizontal') end, { desc = 'ToggleTerm horizontal' })
-vim.keymap.set('n', '<leader>tv', function() vim.cmd('ToggleTerm size=70 direction=vertical') end, { desc = 'ToggleTerm vertical' })
+vim.keymap.set('n', '<leader>th', function()
+    vim.cmd('ToggleTerm direction=horizontal')
+end, { desc = 'ToggleTerm horizontal' })
+vim.keymap.set('n', '<leader>tv', function()
+    vim.cmd('ToggleTerm size=70 direction=vertical')
+end, { desc = 'ToggleTerm vertical' })
 vim.keymap.set('n', '<leader>tT', function() vim.cmd('ToggleTerm direction=tab') end, { desc = 'ToggleTerm tab' })
 vim.keymap.set('n', '<leader>tf', function() vim.cmd('ToggleTerm direction=float') end, { desc = 'ToggleTerm float' })
 
@@ -95,6 +99,12 @@ vim.keymap.set('n', '<leader>?', tb.oldfiles, { desc = '[?] Find recently opened
 vim.keymap.set('n', '<leader><space>', tb.buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>:', tb.command_history, { desc = '[:] Command History' })
 vim.keymap.set('n', '<leader>/', tb.current_buffer_fuzzy_find, { desc = '[/] Fuzzily search in current buffer' })
+-- vim.keymap.set('n', '<leader><M-c>', ':Telescope command_palette<CR>', { desc = '[C]ommand palette', silent = false })
+vim.keymap.set('n', '<leader><M-c>', function()
+    -- vim.cmd('Telescope command_palette')
+    local command_palette = require('telescope').extensions.command_palette
+    command_palette.command_palette()
+end, { desc = '[C]ommand palette', silent = false })
 
 -- Search
 vim.keymap.set('n', '<leader>sg', tb.live_grep, { desc = '[s]earch by [g]rep' })
