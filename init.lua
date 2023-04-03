@@ -4,22 +4,27 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require('andrsj.settings')
 require('andrsj.plugins')
+
+require('andrsj.plugins.blankline')
+require('andrsj.plugins.cmp')
+require('andrsj.plugins.gitsigns')
+require('andrsj.plugins.lualine')
+require('andrsj.plugins.neo-tree')
+require('andrsj.plugins.onedark')
+require('andrsj.plugins.tabline')
+require('andrsj.plugins.telescope')
+require('andrsj.plugins.toggle-term')
+require('andrsj.plugins.tree-sitter')
+require('andrsj.plugins.whichkey')
+require('andrsj.plugins.window-picker')
+
+require('andrsj.settings')
 require('andrsj.keymaps')
 require('andrsj.lsp')
 require('andrsj.utils')
 
 
-require('andrsj.plugins.whichkey')
-require('andrsj.plugins.lualine')
-require('andrsj.plugins.blankline')
-require('andrsj.plugins.window-picker')
-require('andrsj.plugins.neo-tree')
-require('andrsj.plugins.telescope')
-require('andrsj.plugins.tree-sitter')
-require('andrsj.plugins.toggle-term')
-require('andrsj.plugins.cmp')
 
 
 
