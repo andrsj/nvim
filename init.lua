@@ -19,6 +19,8 @@ require('andrsj.plugins.tree-sitter')
 require('andrsj.plugins.whichkey')
 require('andrsj.plugins.window-picker')
 
+require('Comment').setup()
+
 require('andrsj.settings')
 require('andrsj.keymaps')
 require('andrsj.lsp')

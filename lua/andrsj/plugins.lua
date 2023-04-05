@@ -37,11 +37,23 @@ require('lazy').setup({
         'neovim/nvim-lspconfig',
         dependencies = {
             -- Automatically install LSPs to stdpath for neovim
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-            'j-hui/fidget.nvim',
-            -- Additional lua configuration, makes nvim stuff amazing!
-            'folke/neodev.nvim',
+            {
+                'williamboman/mason.nvim',
+                build = ':MasonUpdate',
+                opts = {
+                    ui = {
+                        icons = {
+                            package_installed = "✓",
+                            package_pending = "➜",
+                            package_uninstalled = "✗"
+                        }
+                    }
+                },
+            },
+                'williamboman/mason-lspconfig.nvim',
+                'j-hui/fidget.nvim',
+                -- Additional lua configuration, makes nvim stuff amazing!
+                'folke/neodev.nvim',
         },
     },
     {
@@ -91,10 +103,7 @@ require('lazy').setup({
         dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
         config = function() pcall(require('nvim-treesitter.install').update { with_sync = true }) end,
     },
-    {
-        'iamcco/markdown-preview.nvim',
-        post_install = function() vim.fn['mkdp#util#install']() end,
-    },
+    { 'iamcco/markdown-preview.nvim' },
     {
         'folke/todo-comments.nvim',
         config = function() require("todo-comments").setup() end
@@ -109,4 +118,8 @@ require('lazy').setup({
     { 'ap/vim-css-color' },
     { 'preservim/tagbar' },
 
+    post_install = function()
+        -- Install markdown-preview.nvim plugin
+        vim.cmd("call mkdp#util#install()")
+    end,
 }, {})
