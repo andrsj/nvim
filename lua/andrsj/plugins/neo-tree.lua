@@ -1,4 +1,4 @@
-require("neo-tree").setup({
+require('neo-tree').setup({
     close_if_last_window = true,
     source_selector = {
         winbar = true,
@@ -8,34 +8,34 @@ require("neo-tree").setup({
         window = {
             width = 50,
             mappings = {
-                ["S"] = "split_with_window_picker",
-                ["s"] = "vsplit_with_window_picker",
-                ["Z"] = "expand_all_nodes",
-                ["C"] = "close_all_subnodes",
-                ["P"] = { "toggle_preview", config = { use_float = true } },
-                ["a"] = {
-                    "add",
+                ['S'] = 'split_with_window_picker',
+                ['s'] = 'vsplit_with_window_picker',
+                ['Z'] = 'expand_all_nodes',
+                ['C'] = 'close_all_subnodes',
+                ['P'] = { 'toggle_preview', config = { use_float = true } },
+                ['a'] = {
+                    'add',
                     -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
                     -- some commands may take optional config options, see `:h neo-tree-mappings` for details
                     config = {
-                        show_path = "relative" -- "none", "relative", "absolute"
-                    }
+                        show_path = 'relative', -- "none", "relative", "absolute"
+                    },
                 },
-                ["c"] = {
-                    "copy",
+                ['c'] = {
+                    'copy',
                     config = {
-                        show_path = "relative" -- "none", "relative", "absolute"
-                    }
-                }
-            }
+                        show_path = 'relative', -- "none", "relative", "absolute"
+                    },
+                },
+            },
         },
         filtered_items = {
             visible = false,
             hide_dotfiles = false,
             hide_gitignored = false,
             hide_by_name = {
-                "node_modules",
-                ".git",
+                'node_modules',
+                '.git',
             },
             hide_by_pattern = { -- uses glob style patterns
                 --"*.meta",

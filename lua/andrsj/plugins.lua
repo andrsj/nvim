@@ -1,16 +1,16 @@
 -- Install package manager
 -- https://github.com/folke/lazy.nvim
 -- `:help lazy.nvim.txt` for more info
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system {
+    vim.fn.system({
         'git',
         'clone',
         '--filter=blob:none',
         'https://github.com/folke/lazy.nvim.git',
         '--branch=stable',
         lazypath,
-    }
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -23,14 +23,14 @@ require('lazy').setup({
     -- Detect tabstop and shiftwidth
     { 'tpope/vim-sleuth' },
     {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
+        'nvim-neo-tree/neo-tree.nvim',
+        branch = 'v2.x',
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-            "s1n7ax/nvim-window-picker",
-        }
+            'nvim-lua/plenary.nvim',
+            'nvim-tree/nvim-web-devicons',
+            'MunifTanjim/nui.nvim',
+            's1n7ax/nvim-window-picker',
+        },
     },
     {
         -- LSP Configuration & Plugins
@@ -43,17 +43,17 @@ require('lazy').setup({
                 opts = {
                     ui = {
                         icons = {
-                            package_installed = "✓",
-                            package_pending = "➜",
-                            package_uninstalled = "✗"
-                        }
-                    }
+                            package_installed = '✓',
+                            package_pending = '➜',
+                            package_uninstalled = '✗',
+                        },
+                    },
                 },
             },
-                'williamboman/mason-lspconfig.nvim',
-                'j-hui/fidget.nvim',
-                -- Additional lua configuration, makes nvim stuff amazing!
-                'folke/neodev.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            'j-hui/fidget.nvim',
+            -- Additional lua configuration, makes nvim stuff amazing!
+            'folke/neodev.nvim',
         },
     },
     {
@@ -69,6 +69,12 @@ require('lazy').setup({
             'onsails/lspkind.nvim',
         },
     },
+    {
+        'jose-elias-alvarez/null-ls.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+        },
+    },
     { 'folke/which-key.nvim' },
     { 'lewis6991/gitsigns.nvim' },
     {
@@ -77,7 +83,7 @@ require('lazy').setup({
     },
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { "nvim-tree/nvim-web-devicons" }
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
     },
     { 'lukas-reineke/indent-blankline.nvim' },
     -- "gc" to comment visual regions/lines
@@ -96,30 +102,34 @@ require('lazy').setup({
     {
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'make',
-        cond = function() return vim.fn.executable 'make' == 1 end,
+        cond = function()
+            return vim.fn.executable('make') == 1
+        end,
     },
     {
         'nvim-treesitter/nvim-treesitter',
         dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
-        config = function() pcall(require('nvim-treesitter.install').update { with_sync = true }) end,
+        config = function()
+            pcall(require('nvim-treesitter.install').update({ with_sync = true }))
+        end,
     },
     { 'iamcco/markdown-preview.nvim' },
     {
         'folke/todo-comments.nvim',
-        config = function() require("todo-comments").setup() end
+        config = function()
+            require('todo-comments').setup()
+        end,
     },
     {
         'akinsho/toggleterm.nvim',
-        version = "*",
-        config = true
+        version = '*',
+        config = true,
     },
     { 'kdheepak/tabline.nvim' },
-    { 'fatih/vim-go' },
     { 'ap/vim-css-color' },
     { 'preservim/tagbar' },
-
     post_install = function()
         -- Install markdown-preview.nvim plugin
-        vim.cmd("call mkdp#util#install()")
+        vim.cmd('call mkdp#util#install()')
     end,
 }, {})

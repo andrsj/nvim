@@ -1,4 +1,4 @@
-require('onedark').setup {
+require('onedark').setup({
     -- Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
     style = 'darker',
     -- toggle theme style
@@ -12,7 +12,7 @@ require('onedark').setup {
         keywords = 'none',
         functions = 'none',
         strings = 'none',
-        variables = 'none'
-    }
-}
-vim.cmd.colorscheme 'onedark'
+        variables = 'none',
+    },
+})
+vim.cmd.colorscheme('onedark')

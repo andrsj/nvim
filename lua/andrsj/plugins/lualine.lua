@@ -1,4 +1,4 @@
-require('lualine').setup {
+require('lualine').setup({
     options = {
         theme = 'onedark',
         icons_enabled = true,
@@ -10,6 +10,6 @@ require('lualine').setup {
     sections = {
         lualine_y = {
             'progress',
-        }
-    }
-}
+        },
+    },
+})

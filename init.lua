@@ -11,6 +11,7 @@ require('andrsj.plugins.cmp')
 require('andrsj.plugins.gitsigns')
 require('andrsj.plugins.lualine')
 require('andrsj.plugins.neo-tree')
+require('andrsj.plugins.null-ls')
 require('andrsj.plugins.onedark')
 require('andrsj.plugins.tabline')
 require('andrsj.plugins.telescope')
@@ -26,10 +27,6 @@ require('andrsj.keymaps')
 require('andrsj.lsp')
 require('andrsj.utils')
 
-
-
-
-
 -- Exapmples of TODO comments:
 -- PERF:    text
 -- TODO:    text
@@ -41,8 +38,6 @@ require('andrsj.utils')
 -- XXX:     text
 -- TEST:    text
 -- BUG:     text
-
-
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=4 sts=4 sw=4 et

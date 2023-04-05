@@ -1,38 +1,41 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 local lspkind = require('lspkind')
-local types = require("cmp.types")
-local str = require("cmp.utils.str")
+local types = require('cmp.types')
+local str = require('cmp.utils.str')
 
-luasnip.config.setup {}
+luasnip.config.setup({})
 
-cmp.setup {
+cmp.setup({
     snippet = {
         expand = function(args)
-            require("luasnip").lsp_expand(args.body)
+            require('luasnip').lsp_expand(args.body)
         end,
+    },
+    completion = {
+        completeopt = 'menu,menuone,noselect',
+        keyword_length = 2,
     },
     window = {
         documentation = {
-            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-            scrollbar = "║",
+            border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+            scrollbar = '║',
         },
         completion = {
-            keyword_length = 2,
-            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-            scrollbar = "║"
+            border = { '╭', '─', '╮', '│', '╯', '─', '╰', '│' },
+            scrollbar = '║',
         },
     },
-    mapping = cmp.mapping.preset.insert {
+    mapping = cmp.mapping.preset.insert({
         ['<C-Up>'] = cmp.mapping.scroll_docs(-4),
         ['<C-k>'] = cmp.mapping.scroll_docs(-4),
         ['<C-Down>'] = cmp.mapping.scroll_docs(4),
         ['<C-j>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete {},
-        ['<CR>'] = cmp.mapping.confirm {
+        ['<C-Space>'] = cmp.mapping.complete({}),
+        ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
-        },
+        }),
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -51,7 +54,7 @@ cmp.setup {
                 fallback()
             end
         end, { 'i', 's' }),
-    },
+    }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
@@ -86,29 +89,26 @@ cmp.setup {
                 -- end
                 if
                     entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet
-                    and string.sub(vim_item.abbr, -1, -1) == "~"
+                    and string.sub(vim_item.abbr, -1, -1) == '~'
                 then
-                    word = word .. "~"
+                    word = word .. '~'
                 end
                 vim_item.abbr = word
                 return vim_item
             end,
-        })
-    }
-}
+        }),
+    },
+})
 
 cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = 'buffer' },
-        { name = 'path' }
-    }
+        { name = 'path' },
+    },
 })
 
 cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources(
-        { { name = 'path' } },
-        { { name = 'cmdline' } }
-    )
+    sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
 })
